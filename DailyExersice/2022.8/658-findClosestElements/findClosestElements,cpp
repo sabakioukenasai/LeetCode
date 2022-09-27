@@ -1,0 +1,22 @@
+#include <vector>
+#include <iostream>
+
+using std::abs;
+using std::vector;
+
+class Solution{
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x){
+        if (arr.size() == k)
+            return arr;
+        int minind = 0, minsum = 0, sum = 0, iend = arr.size() - k;
+        for (int i = 0; i < iend; ++i){
+            sum += abs(arr[i + k] - x) - abs(arr[i] - x);
+            if (sum < minsum){
+                minsum = sum;
+                minind = i + 1;
+            }
+        }
+        return vector<int>(arr.begin() + minind, arr.begin() + minind + k);
+    }
+};
